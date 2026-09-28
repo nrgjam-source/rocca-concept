@@ -15,13 +15,14 @@ Production: https://rocca-concept-standalone.vercel.app/
 
 | Image | Placement |
 | --- | --- |
-| main1 | Audiences, entrance groups |
-| main2 | Staircases, engineering |
+| main1 | Entrance groups |
+| main2 | Staircases |
 | main3 | Materials |
 | main4 | Project directions overview |
 | main5 | Hero, eager loading and high fetch priority |
 | main6 | Closing architectural scene |
-| main7 | About, work stages |
+| main8 | Engineering (one use) |
+| main9 | Audiences (one use) |
 
 Images below the hero use lazy loading. Replace each project article independently as real cases become available. Current imagery is labelled as conceptual directions, not completed ROCCA projects.
 
@@ -40,3 +41,5 @@ Future material entries should use independent `material`, `application`, and `o
 ## Deployment
 
 Commit and push to existing `main`; Vercel's GitHub integration deploys production. The pre-rebuild state is commit `0ee6791a70d1f592af3fb51193a6d0676575f870`, also retained as branch `backup/pre-homepage-rebuild-20260928`.
+
+ROCCA branding uses the supplied symbol and exact wordmark artwork. An SVG color filter removes the light background at render time; source shapes remain unchanged. No photo repeats on the homepage. main7 assets are retained for possible later use but are not referenced.
