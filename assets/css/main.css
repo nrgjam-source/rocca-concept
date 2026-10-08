@@ -128,10 +128,11 @@ nav [aria-current=page]{color:var(--accent)}
 
 /* Calm one-time entries. Each element owns only one transform animation. */
 .hero-photo{aspect-ratio:1100/1430;padding:16px;overflow:visible}
-.hero-photo img{animation:hero-camera 22s ease-in-out infinite alternate;animation-play-state:paused;transform-origin:center}
-.hero-photo.camera-active img{animation-play-state:running}
-.hero-entry .hero-photo{opacity:0;transition:opacity 650ms ease}
-.hero-entry.hero-loaded .hero-photo{opacity:1}
+.hero-photo img{animation:none;transform-origin:center}
+.hero-camera-ready .hero-photo img{animation:hero-camera 22s ease-in-out infinite alternate;animation-play-state:paused}
+.hero-camera-ready .hero-photo.camera-active img{animation-play-state:running}
+.hero-entry .hero-photo{opacity:0;transform:translateY(12px) scale(1.035);transform-origin:center;transition:opacity 1400ms cubic-bezier(.22,1,.36,1),transform 1400ms cubic-bezier(.22,1,.36,1)}
+.hero-entry.hero-loaded .hero-photo{opacity:1;transform:none}
 .hero-entry .hero-copy>h1,.hero-entry .hero-copy>.intro,.hero-entry .hero-copy>.actions,.hero-entry .hero-copy>.geo{opacity:0;transform:translateY(18px);transition:opacity 900ms cubic-bezier(.22,1,.36,1),transform 900ms cubic-bezier(.22,1,.36,1);transition-delay:250ms}
 .hero-entry .hero-copy>.intro{transition-delay:380ms}.hero-entry .hero-copy>.actions{transition-delay:510ms}.hero-entry .hero-copy>.geo{transition-delay:600ms}
 .hero-entry.hero-loaded .hero-copy>h1,.hero-entry.hero-loaded .hero-copy>.intro,.hero-entry.hero-loaded .hero-copy>.actions,.hero-entry.hero-loaded .hero-copy>.geo{opacity:1;transform:none}
@@ -152,7 +153,7 @@ h2.section-entry.entry-ready{transform:translateY(20px)}
 @media(hover:hover) and (pointer:fine){.technology-item{transition:transform 500ms ease}.technology-item.entry-shown:hover{transform:translateY(-3px)}}
 @media(max-width:700px){
  .hero-photo{padding:10px;aspect-ratio:1100/1430}
- .hero-photo img{animation-name:hero-mobile-camera}
+ .hero-camera-ready .hero-photo img{animation-name:hero-mobile-camera}
  .section-entry.entry-ready{transition-duration:700ms;transform:translateY(18px)}
  .section-entry.entry-shown{transform:none}
  .cinematic-entry.entry-ready .photo-layer{transition-duration:1000ms}
@@ -165,4 +166,19 @@ h2.section-entry.entry-ready{transform:translateY(20px)}
  .hero-photo img,.architecture-image.camera-ready img{animation:none;transform:none}
  .section-entry.entry-ready,.section-entry.entry-shown,.cinematic-entry.entry-ready .photo-layer,.hero-entry .hero-copy>h1,.hero-entry .hero-copy>.intro,.hero-entry .hero-copy>.actions,.hero-entry .hero-copy>.geo,.hero-entry .hero-photo{opacity:1;transform:none;transition:none}
  .technology-item.entry-shown:hover{transform:none}
+}
+
+/* Give the complete hero photograph more space within a balanced grid. */
+@media(min-width:701px){
+ .hero{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);column-gap:clamp(32px,3.3vw,60px);padding-inline:max(var(--pad),calc((100vw - 1560px)/2))}
+ .hero-photo{max-width:740px}
+}
+@media(max-width:700px){
+ .hero-photo{width:calc(100% - 24px);max-width:430px;padding:8px}
+ .hero-entry .hero-photo{transform:translateY(8px) scale(1.025);transition-duration:1200ms}
+ .hero-entry.hero-loaded .hero-photo{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-camera-ready .hero-photo img{animation:none;transform:none}
+ .hero-entry .hero-photo{opacity:1;transform:none;transition:none}
 }

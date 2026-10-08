@@ -102,7 +102,10 @@ if(homepage){
  const hero=document.querySelector('.hero');
  const image=hero.querySelector('img');
  if(!reduced.matches)hero.classList.add('hero-entry');
- image.decode().catch(()=>{}).then(()=>requestAnimationFrame(()=>requestAnimationFrame(()=>hero.classList.add('hero-loaded'))));
+ image.decode().catch(()=>{}).then(()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{
+  hero.classList.add('hero-loaded');
+  setTimeout(()=>hero.classList.add('hero-camera-ready'),innerWidth<=700?1250:1450);
+ })));
  reduced.addEventListener('change',()=>{if(reduced.matches)hero.classList.remove('hero-entry');});
  // Visibility affects only play state; time and scale are handled entirely by CSS.
  const cameraObserver='IntersectionObserver' in window?new IntersectionObserver(entries=>entries.forEach(({target,isIntersecting})=>target.classList.toggle('camera-active',isIntersecting)),{threshold:0}):null;
