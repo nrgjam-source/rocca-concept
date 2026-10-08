@@ -75,3 +75,34 @@ nav [aria-current=page]{color:var(--accent)}
  .hero-photo{position:relative;inset:auto;z-index:auto;width:calc(100% - 2 * var(--pad));max-width:480px;height:auto;min-height:0;max-height:none;aspect-ratio:581/750;margin:0 auto 28px}
  .hero-photo img{height:auto;object-fit:contain;object-position:center}
 }
+
+/* Balanced hero columns and a restrained portfolio scale. */
+@media(min-width:701px){
+ .hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(32px,4vw,64px);padding:36px max(var(--pad),calc((100vw - 1360px)/2)) 0}
+ .hero-copy{padding:32px 0 45px;min-width:0}
+ .hero-photo{justify-self:center;max-width:540px}
+ .hero-bottom{padding-left:0;padding-right:0}
+ .hero h1{font-size:clamp(40px,5vw,88px)}
+}
+.portfolio-page .case-section{padding-inline:max(var(--pad),calc((100vw - 1120px)/2))}
+.case-editorial{grid-template-columns:.8fr 1.2fr;gap:clamp(36px,5vw,76px)}
+.case-cover{width:100%;max-width:360px;justify-self:center}
+.case-cover .real-photo,.manufacturing-editorial .saw .real-photo{aspect-ratio:auto;height:400px;max-height:400px}
+.case-sequence,.stair-editorial,.objects-editorial,.finished-editorial,.manufacturing-editorial{max-width:1040px;margin-inline:auto;gap:48px 52px}
+.portfolio-page .real-photo{aspect-ratio:auto;height:320px;max-height:320px}
+.portfolio-page .real-photo img{width:100%;height:100%;object-fit:contain;object-position:center}
+.portfolio-page .case-cover .real-photo{height:400px;max-height:400px}
+.stair-editorial .wide,.objects-editorial .wide,.finished-editorial .wide,.manufacturing-editorial .wide{width:100%;max-width:820px;justify-self:center}
+.stair-editorial .wide .real-photo,.objects-editorial .wide .real-photo,.finished-editorial .wide .real-photo,.manufacturing-editorial .wide .real-photo{aspect-ratio:auto;height:380px;max-height:380px}
+.manufacturing-editorial .saw{max-width:360px;justify-self:center}
+@media(max-width:700px){
+ .hero-photo{align-self:center;justify-self:center;max-width:380px}
+ .portfolio-page .case-section{padding-inline:var(--pad)}
+ .case-editorial{grid-template-columns:1fr;gap:28px}
+ .case-sequence,.stair-editorial,.objects-editorial,.finished-editorial,.manufacturing-editorial{gap:36px}
+ .portfolio-page .real-card{width:100%;max-width:340px;justify-self:center}
+ .portfolio-page .real-photo,.stair-editorial .wide .real-photo,.objects-editorial .wide .real-photo,.finished-editorial .wide .real-photo,.manufacturing-editorial .wide .real-photo{height:250px;max-height:250px;display:flex;align-items:center;justify-content:center}
+ .portfolio-page .case-cover,.manufacturing-editorial .saw{max-width:260px}
+ .portfolio-page .case-cover .real-photo,.manufacturing-editorial .saw .real-photo{height:310px;max-height:310px}
+ .portfolio-page .real-photo img{height:100%;object-fit:contain}
+}
