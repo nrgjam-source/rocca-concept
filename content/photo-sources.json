@@ -1,0 +1,487 @@
+{
+  "source_archive": "фото для сайта по разделам.rar",
+  "source_archive_sha256": "8db2a985d6c216dc50ee749078cc1431f63a50cfba483f9378eb6fbe35b432c5",
+  "source_storage": "Original PNG files retained in the supplied source archive, outside public assets.",
+  "images": {
+    "pr3": {
+      "name": "production-rocca-03",
+      "folder": "production",
+      "dimensions": {
+        "1100": [
+          1100,
+          825
+        ],
+        "480": [
+          480,
+          360
+        ]
+      },
+      "source": "pr3.png"
+    },
+    "a5": {
+      "name": "project-leningrad-before-after-05",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "a5.png"
+    },
+    "i5": {
+      "name": "finished-stone-piece-05",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1100,
+          825
+        ],
+        "480": [
+          480,
+          360
+        ]
+      },
+      "source": "i5.png"
+    },
+    "a2": {
+      "name": "project-leningrad-before-after-02",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1100,
+          1375
+        ],
+        "480": [
+          480,
+          600
+        ]
+      },
+      "source": "a2.png"
+    },
+    "g2": {
+      "name": "project-saint-petersburg-staircase-02",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "g2.png"
+    },
+    "pr2": {
+      "name": "production-rocca-02",
+      "folder": "production",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "pr2.png"
+    },
+    "pr1": {
+      "name": "production-rocca-01",
+      "folder": "production",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "pr1.png"
+    },
+    "o3": {
+      "name": "project-leningrad-completed-03",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1100,
+          619
+        ],
+        "480": [
+          480,
+          270
+        ]
+      },
+      "source": "o3.png"
+    },
+    "k3": {
+      "name": "project-karelia-before-after-03",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "k3.png"
+    },
+    "i4": {
+      "name": "finished-stone-piece-04",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "i4.png"
+    },
+    "g1": {
+      "name": "project-saint-petersburg-staircase-01",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "g1.png"
+    },
+    "i1": {
+      "name": "finished-stone-piece-01",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1024,
+          1536
+        ],
+        "480": [
+          480,
+          720
+        ]
+      },
+      "source": "i1.png"
+    },
+    "pr5": {
+      "name": "production-rocca-05",
+      "folder": "production",
+      "dimensions": {
+        "1100": [
+          1100,
+          825
+        ],
+        "480": [
+          480,
+          360
+        ]
+      },
+      "source": "pr5.png"
+    },
+    "o1": {
+      "name": "project-leningrad-completed-01",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1100,
+          440
+        ],
+        "480": [
+          480,
+          192
+        ]
+      },
+      "source": "o1.png"
+    },
+    "i6": {
+      "name": "finished-stone-piece-06",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "i6.png"
+    },
+    "pr4": {
+      "name": "production-rocca-04",
+      "folder": "production",
+      "dimensions": {
+        "1100": [
+          1100,
+          825
+        ],
+        "480": [
+          480,
+          360
+        ]
+      },
+      "source": "pr4.png"
+    },
+    "a3": {
+      "name": "project-leningrad-before-after-03",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1100,
+          1375
+        ],
+        "480": [
+          480,
+          600
+        ]
+      },
+      "source": "a3.png"
+    },
+    "k5": {
+      "name": "project-karelia-before-after-05",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "k5.png"
+    },
+    "i7": {
+      "name": "finished-stone-piece-07",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "i7.png"
+    },
+    "i2": {
+      "name": "finished-stone-piece-02",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1100,
+          825
+        ],
+        "480": [
+          480,
+          360
+        ]
+      },
+      "source": "i2.png"
+    },
+    "pr10": {
+      "name": "production-rocca-10",
+      "folder": "production",
+      "dimensions": {
+        "1100": [
+          1100,
+          1375
+        ],
+        "480": [
+          480,
+          600
+        ]
+      },
+      "source": "pr10.png"
+    },
+    "k4": {
+      "name": "project-karelia-before-after-04",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "k4.png"
+    },
+    "i3": {
+      "name": "finished-stone-piece-03",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "i3.png"
+    },
+    "pr7": {
+      "name": "production-rocca-07",
+      "folder": "production",
+      "dimensions": {
+        "1100": [
+          1100,
+          1375
+        ],
+        "480": [
+          480,
+          600
+        ]
+      },
+      "source": "pr7.png"
+    },
+    "a4": {
+      "name": "project-leningrad-before-after-04",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "a4.png"
+    },
+    "pr8": {
+      "name": "production-rocca-08",
+      "folder": "production",
+      "dimensions": {
+        "1100": [
+          1100,
+          1375
+        ],
+        "480": [
+          480,
+          600
+        ]
+      },
+      "source": "pr8.png"
+    },
+    "pr9": {
+      "name": "production-rocca-09",
+      "folder": "production",
+      "dimensions": {
+        "1100": [
+          1100,
+          1375
+        ],
+        "480": [
+          480,
+          600
+        ]
+      },
+      "source": "pr9.png"
+    },
+    "k1": {
+      "name": "project-karelia-before-after-01",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "k1.png"
+    },
+    "pr6": {
+      "name": "production-rocca-06",
+      "folder": "production",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "pr6.png"
+    },
+    "o2": {
+      "name": "project-leningrad-completed-02",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          941,
+          1672
+        ],
+        "480": [
+          480,
+          853
+        ]
+      },
+      "source": "o2.png"
+    },
+    "a1": {
+      "name": "project-leningrad-before-after-01",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1100,
+          619
+        ],
+        "480": [
+          480,
+          270
+        ]
+      },
+      "source": "a1.png"
+    },
+    "k2": {
+      "name": "project-karelia-before-after-02",
+      "folder": "projects",
+      "dimensions": {
+        "1100": [
+          1086,
+          1448
+        ],
+        "480": [
+          480,
+          640
+        ]
+      },
+      "source": "k2.png"
+    }
+  }
+}

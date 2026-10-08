@@ -182,3 +182,33 @@ h2.section-entry.entry-ready{transform:translateY(20px)}
  .hero-camera-ready .hero-photo img{animation:none;transform:none}
  .hero-entry .hero-photo{opacity:1;transform:none;transition:none}
 }
+
+/* A consistent portfolio rhythm; existing reveal rules remain unchanged. */
+.archive-case .case-heading{max-width:1040px;margin-inline:auto;margin-bottom:36px}
+.archive-case .case-heading h2{font-size:clamp(28px,3.2vw,52px);max-width:920px;line-height:1.12}
+.portfolio-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 40px;max-width:1040px;margin-inline:auto;align-items:start}
+.portfolio-grid .real-card{width:100%;max-width:none;margin:0}
+.portfolio-grid .real-photo{height:330px;max-height:330px}
+.portfolio-grid .wide{grid-column:1/-1;max-width:680px;justify-self:center}
+.portfolio-grid .wide .real-photo{height:400px;max-height:400px}
+.case-phase{max-width:1040px;margin-inline:auto}
+.case-phase+.case-phase{margin-top:44px}
+.phase-label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 20px}
+.before-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-width:820px;margin-left:0;gap:24px}
+.before-grid:has(>.real-card:nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,1fr));max-width:660px}
+.before-grid .real-photo{height:210px;max-height:210px}
+.before-grid .real-card h3{font-size:17px}
+.portfolio-grid .real-card figcaption{min-height:68px;padding-bottom:18px}
+.production-grid .single-frame{grid-column:1/-1;max-width:620px;justify-self:center}
+.products-grid .real-photo{height:300px;max-height:300px}
+.archive-case>.section-summary{max-width:1040px;margin:0 auto 32px}
+@media(max-width:700px){
+ .archive-case .case-heading{margin-bottom:26px}
+ .archive-case .case-heading h2{font-size:28px}
+ .portfolio-grid,.before-grid,.before-grid:has(>.real-card:nth-child(2):last-child){grid-template-columns:1fr;gap:28px;max-width:340px;margin-inline:auto}
+ .portfolio-grid .real-card,.portfolio-grid .wide,.production-grid .single-frame{max-width:340px;grid-column:auto}
+ .portfolio-grid .real-photo,.portfolio-grid .wide .real-photo,.products-grid .real-photo{height:260px;max-height:260px}
+ .before-grid .real-photo{height:200px;max-height:200px}
+ .case-phase+.case-phase{margin-top:32px}
+ .portfolio-grid .real-card figcaption{min-height:0}
+}
