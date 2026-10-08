@@ -106,3 +106,22 @@ nav [aria-current=page]{color:var(--accent)}
  .portfolio-page .case-cover .real-photo,.manufacturing-editorial .saw .real-photo{height:310px;max-height:310px}
  .portfolio-page .real-photo img{height:100%;object-fit:contain}
 }
+
+/* Photographs emerge from the graphite surface; no continuous JS animation. */
+.portfolio-page .real-photo.photo-pending{
+ opacity:0;transform:translateY(40px) scale(.94);filter:blur(14px) brightness(.78);
+ transform-origin:center;transition:opacity 1100ms cubic-bezier(.22,1,.36,1),transform 1200ms cubic-bezier(.22,1,.36,1),filter 1200ms cubic-bezier(.22,1,.36,1),clip-path 1200ms cubic-bezier(.22,1,.36,1);transition-delay:var(--reveal-delay,0ms);
+}
+.portfolio-page .real-photo.photo-mask.photo-pending{clip-path:inset(30% 0 0 0)}
+.portfolio-page .real-photo.photo-visible{opacity:1;transform:translateY(0) scale(1);filter:blur(0) brightness(1);clip-path:inset(0)}
+.portfolio-page .real-photo.photo-entering{will-change:transform,opacity,filter}
+.portfolio-page .real-photo img{transition:transform 650ms cubic-bezier(.22,1,.36,1),filter 650ms ease}
+@media(hover:hover) and (pointer:fine){.portfolio-page .real-photo.photo-visible:hover img{transform:scale(1.015);filter:contrast(1.025)}}
+@media(max-width:700px){
+ .portfolio-page .real-photo.photo-pending{transform:translateY(20px) scale(.96);filter:blur(6px) brightness(.88);transition-duration:800ms;transition-delay:0ms}
+ .portfolio-page .real-photo.photo-visible{transform:translateY(0) scale(1);filter:blur(0) brightness(1)}
+}
+@media(prefers-reduced-motion:reduce){
+ .portfolio-page .real-photo.photo-pending,.portfolio-page .real-photo.photo-visible{opacity:1;transform:none;filter:none;clip-path:none;transition:none;will-change:auto}
+ .portfolio-page .real-photo img,.portfolio-page .real-photo:hover img{transition:none;transform:none;filter:none}
+}
