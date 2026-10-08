@@ -212,3 +212,18 @@ h2.section-entry.entry-ready{transform:translateY(20px)}
  .case-phase+.case-phase{margin-top:32px}
  .portfolio-grid .real-card figcaption{min-height:0}
 }
+
+/* Moderately enlarge desktop portfolio frames without changing image motion. */
+@media(min-width:1151px){
+ .portfolio-page .archive-case{padding-inline:max(var(--pad),calc((100vw - 1280px)/2))}
+ .archive-case .case-heading,.case-phase,.archive-case>.section-summary{max-width:1240px}
+ .portfolio-grid{max-width:1240px}
+ .portfolio-grid .real-photo{height:396px;max-height:396px}
+ .portfolio-grid .wide{max-width:816px}
+ .portfolio-grid .wide .real-photo{height:480px;max-height:480px}
+ .before-grid{max-width:984px}
+ .before-grid:has(>.real-card:nth-child(2):last-child){max-width:792px}
+ .before-grid .real-photo{height:252px;max-height:252px}
+ .production-grid .single-frame{max-width:744px}
+ .products-grid .real-photo{height:360px;max-height:360px}
+}
