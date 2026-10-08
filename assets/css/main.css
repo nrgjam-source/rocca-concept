@@ -125,3 +125,32 @@ nav [aria-current=page]{color:var(--accent)}
  .portfolio-page .real-photo.photo-pending,.portfolio-page .real-photo.photo-visible{opacity:1;transform:none;filter:none;clip-path:none;transition:none;will-change:auto}
  .portfolio-page .real-photo img,.portfolio-page .real-photo:hover img{transition:none;transform:none;filter:none}
 }
+
+/* Living homepage frames: slow movement, isolated from the photographic chapters. */
+.hero-photo.living-ready{padding:16px;overflow:visible}
+.hero-photo.living-ready img{animation:rocca-camera 18s ease-in-out infinite alternate;animation-play-state:paused;translate:var(--cursor-x,0px) calc(var(--living-y,0px) + var(--cursor-y,0px));transition:translate 700ms cubic-bezier(.22,1,.36,1);transform-origin:center}
+.hero-photo.living-active img{animation-play-state:running}
+.architecture-image.living-ready img{transform:translateY(var(--living-y,0px)) scale(1.06);translate:var(--cursor-x,0px) var(--cursor-y,0px);transition:transform 220ms ease-out,translate 700ms cubic-bezier(.22,1,.36,1)}
+.final-stair.living-ready{opacity:0;transform:translateY(16px) scale(.96);filter:blur(8px);transition:opacity 1100ms cubic-bezier(.22,1,.36,1),transform 1100ms cubic-bezier(.22,1,.36,1),filter 1100ms cubic-bezier(.22,1,.36,1)}
+.final-stair.living-visible{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+.final-stair.living-ready img{animation:rocca-stair-camera 20s ease-in-out infinite alternate;animation-play-state:paused;translate:var(--cursor-x,0px) var(--cursor-y,0px);transition:translate 700ms ease}
+.final-stair.living-active img{animation-play-state:running}
+.solutions-grid .media.living-ready{opacity:0;clip-path:inset(18% 0 0 0);transform:scale(.97);transition:opacity 1200ms cubic-bezier(.22,1,.36,1),transform 1200ms cubic-bezier(.22,1,.36,1),clip-path 1200ms cubic-bezier(.22,1,.36,1)}
+.solutions-grid .media.living-visible{opacity:1;clip-path:inset(0);transform:scale(1)}
+.solutions-grid .media.living-ready img{translate:var(--cursor-x,0px) var(--cursor-y,0px);transition:translate 700ms ease}
+@keyframes rocca-camera{from{transform:scale(1)}to{transform:scale(1.025)}}
+@keyframes rocca-stair-camera{from{transform:scale(1)}to{transform:scale(1.015)}}
+@media(max-width:700px){
+ .hero-photo.living-ready{padding:10px}
+ .hero-photo.living-ready img{animation-name:rocca-mobile-camera}
+ .architecture-image.living-ready img{transform:translateY(var(--living-y,0px)) scale(1.045)}
+ .final-stair.living-ready{transform:translateY(8px) scale(.97);filter:blur(4px);transition-duration:800ms}
+ .final-stair.living-visible{transform:translateY(0) scale(1);filter:blur(0)}
+ .solutions-grid .media.living-ready{transition-duration:850ms}
+}
+@keyframes rocca-mobile-camera{from{transform:scale(1)}to{transform:scale(1.012)}}
+@media(prefers-reduced-motion:reduce){
+ .hero-photo.living-ready img,.final-stair.living-ready img{animation:none;transform:none;translate:none;transition:none}
+ .architecture-image.living-ready img,.solutions-grid .media.living-ready img{transform:none;translate:none;transition:none}
+ .final-stair.living-ready,.solutions-grid .media.living-ready{opacity:1;transform:none;filter:none;clip-path:none;transition:none}
+}
