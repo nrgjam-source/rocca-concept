@@ -4,7 +4,7 @@ Existing main images are conceptual illustrations, not proof of completed ROCCA 
 
 `projects.json` reserves verified portfolio content. Before adding cards, obtain approved real object photographs, object type/title, material, and the exact ROCCA scope. The empty homepage container `#project-cases` is reserved for these cards; replace the direction placeholders only after verification.
 
-Production cards have `data-photo-slot` identifiers and use supplied conceptual technology illustrations (not real manufacturing photographs). Thermal treatment was explicitly added in the October 7 review. Replace images with verified real technology photographs later. Input mapping: 1(2)–6 → cards 1–6, 7.png → thermal treatment (7), 7 (2).png → quality control (8), 8.png → packaging (9).
+Production cards have `data-photo-slot` identifiers and use supplied schematic technology illustrations (not real manufacturing photographs). October 8 inputs 1(6).png, 2(5).png, 3(6).png, 4(4).png, 5(4).png, 6(4).png, 7(4).png, 8(3).png, 9(2).png map directly to cards 1–9. Schemes are displayed uncropped; embedded numbers and captions replace duplicate visible HTML labels. Semantic headings remain available to screen readers. Earlier technology images are retained as inactive assets.
 
 `journal.html` preserves the previous journal section for a future dedicated page; it is not linked publicly.
 

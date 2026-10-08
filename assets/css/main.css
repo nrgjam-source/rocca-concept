@@ -30,17 +30,13 @@
 .visual-note{position:static;display:block;background:none;padding:0;margin:15px 0 0;color:var(--muted);font-size:11px}.solution-list a{display:flex;justify-content:space-between;gap:15px}.solution-list a span{font-size:17px;color:var(--accent)}.b2b-callout{grid-template-columns:1.5fr 1fr}.b2b-callout h3{margin-bottom:12px}.compact-intro{grid-template-columns:1fr auto}.compact-intro h2{margin-bottom:18px}.pillars{align-self:center}.hero h1{margin-top:0}
 @media(max-width:700px){.b2b-callout{display:block}.hero h1{margin-top:0}}
 
-/* Supplied technology illustrations, numbered 01–09. */
+/* Complete supplied schematic cards, with integrated numbering and captions. */
 .production-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 22px;margin:34px 0 20px}
-.production-card{padding:0;background:var(--panel);min-width:0;overflow:hidden}
-.production-photo{position:relative;aspect-ratio:4/3;overflow:hidden;margin:0;background:#30332e;isolation:isolate}
-.production-photo img{width:100%;height:100%;object-fit:cover;transform-origin:center;will-change:transform}
-.production-photo:after{content:"";position:absolute;inset:65% 0 0;background:linear-gradient(transparent,#171a1755);pointer-events:none}
-.production-number{position:absolute;z-index:1;bottom:14px;right:16px;font-size:12px;letter-spacing:.12em;color:var(--ink)}
-.production-card h3{margin:0;padding:20px 22px 24px;font-size:clamp(19px,1.6vw,28px);line-height:1.25;min-height:92px}
+.production-card{padding:0;background:#ebe8df;min-width:0;position:relative;overflow:hidden}
+.production-photo{position:relative;aspect-ratio:4/5;overflow:hidden;margin:0;background:#ebe8df}
+.production-photo img{width:100%;height:100%;object-fit:contain;object-position:center;transform:none;will-change:auto}
+.production-photo:after{display:none}
+.visually-hidden,.production-card h3.visually-hidden{position:absolute;width:1px;height:1px;min-height:0;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 .production-caption{font-size:11px;color:var(--muted);margin:0 0 24px;letter-spacing:.02em}
-@media(max-width:1100px){.production-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}}
-@media(max-width:700px){.production-grid{gap:16px 12px;margin-top:25px}.production-card h3{padding:14px 12px 17px;font-size:16px;min-height:76px;overflow-wrap:normal}.production-number{bottom:9px;right:10px;font-size:10px}.production-caption{font-size:10px}.production-photo img{will-change:auto}}
-@media(prefers-reduced-motion:reduce){.production-photo img{transform:none!important;will-change:auto}}
-@media(max-width:1100px){.production-card:last-child{grid-column:1/-1}.production-card:last-child .production-photo{aspect-ratio:2/1}.production-card:last-child h3{min-height:0}.production-card:last-child img{object-position:center 65%}}
-@media(max-width:700px){#production h2{font-size:clamp(27px,7.8vw,32px)}.production-card h3{font-size:clamp(14px,3.8vw,16px)}}
+@media(max-width:1100px){.production-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.production-card:last-child{grid-column:1/-1;width:calc((100% - 20px)/2);justify-self:center}}
+@media(max-width:700px){#production h2{font-size:clamp(27px,7.8vw,32px)}.production-grid{grid-template-columns:minmax(0,1fr);gap:20px;margin-top:25px}.production-card:last-child{grid-column:auto;width:100%}.production-caption{font-size:10px}}
