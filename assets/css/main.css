@@ -126,31 +126,43 @@ nav [aria-current=page]{color:var(--accent)}
  .portfolio-page .real-photo img,.portfolio-page .real-photo:hover img{transition:none;transform:none;filter:none}
 }
 
-/* Living homepage frames: slow movement, isolated from the photographic chapters. */
-.hero-photo.living-ready{padding:16px;overflow:visible}
-.hero-photo.living-ready img{animation:rocca-camera 18s ease-in-out infinite alternate;animation-play-state:paused;translate:var(--cursor-x,0px) calc(var(--living-y,0px) + var(--cursor-y,0px));transition:translate 700ms cubic-bezier(.22,1,.36,1);transform-origin:center}
-.hero-photo.living-active img{animation-play-state:running}
-.architecture-image.living-ready img{transform:translateY(var(--living-y,0px)) scale(1.06);translate:var(--cursor-x,0px) var(--cursor-y,0px);transition:transform 220ms ease-out,translate 700ms cubic-bezier(.22,1,.36,1)}
-.final-stair.living-ready{opacity:0;transform:translateY(16px) scale(.96);filter:blur(8px);transition:opacity 1100ms cubic-bezier(.22,1,.36,1),transform 1100ms cubic-bezier(.22,1,.36,1),filter 1100ms cubic-bezier(.22,1,.36,1)}
-.final-stair.living-visible{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
-.final-stair.living-ready img{animation:rocca-stair-camera 20s ease-in-out infinite alternate;animation-play-state:paused;translate:var(--cursor-x,0px) var(--cursor-y,0px);transition:translate 700ms ease}
-.final-stair.living-active img{animation-play-state:running}
-.solutions-grid .media.living-ready{opacity:0;clip-path:inset(18% 0 0 0);transform:scale(.97);transition:opacity 1200ms cubic-bezier(.22,1,.36,1),transform 1200ms cubic-bezier(.22,1,.36,1),clip-path 1200ms cubic-bezier(.22,1,.36,1)}
-.solutions-grid .media.living-visible{opacity:1;clip-path:inset(0);transform:scale(1)}
-.solutions-grid .media.living-ready img{translate:var(--cursor-x,0px) var(--cursor-y,0px);transition:translate 700ms ease}
-@keyframes rocca-camera{from{transform:scale(1)}to{transform:scale(1.025)}}
-@keyframes rocca-stair-camera{from{transform:scale(1)}to{transform:scale(1.015)}}
+/* Calm one-time entries. Each element owns only one transform animation. */
+.hero-photo{aspect-ratio:1100/1430;padding:16px;overflow:visible}
+.hero-photo img{animation:hero-camera 22s ease-in-out infinite alternate;animation-play-state:paused;transform-origin:center}
+.hero-photo.camera-active img{animation-play-state:running}
+.hero-entry .hero-photo{opacity:0;transition:opacity 650ms ease}
+.hero-entry.hero-loaded .hero-photo{opacity:1}
+.hero-entry .hero-copy>h1,.hero-entry .hero-copy>.intro,.hero-entry .hero-copy>.actions,.hero-entry .hero-copy>.geo{opacity:0;transform:translateY(18px);transition:opacity 900ms cubic-bezier(.22,1,.36,1),transform 900ms cubic-bezier(.22,1,.36,1);transition-delay:250ms}
+.hero-entry .hero-copy>.intro{transition-delay:380ms}.hero-entry .hero-copy>.actions{transition-delay:510ms}.hero-entry .hero-copy>.geo{transition-delay:600ms}
+.hero-entry.hero-loaded .hero-copy>h1,.hero-entry.hero-loaded .hero-copy>.intro,.hero-entry.hero-loaded .hero-copy>.actions,.hero-entry.hero-loaded .hero-copy>.geo{opacity:1;transform:none}
+.section-entry.entry-ready{opacity:0;transform:translateY(24px);transition:opacity 850ms cubic-bezier(.22,1,.36,1),transform 850ms cubic-bezier(.22,1,.36,1);transition-delay:var(--entry-delay,0ms)}
+h2.section-entry.entry-ready{transform:translateY(20px)}
+.section-entry.entry-ready.entry-shown{opacity:1;transform:none}
+.photo-layer{width:100%;height:100%;overflow:hidden}
+.cinematic-entry{overflow:hidden}
+.cinematic-entry.entry-ready .photo-layer{opacity:0;transform:scale(1.04) translateY(24px);transition:opacity 1200ms cubic-bezier(.22,1,.36,1),transform 1200ms cubic-bezier(.22,1,.36,1);transition-delay:var(--entry-delay,0ms)}
+.final-stair.cinematic-entry.entry-ready .photo-layer{transform:translateY(7%) scale(1.025);transition-duration:1100ms}
+.solutions-grid .cinematic-entry.entry-ready .photo-layer{transform:translateY(30px) scale(.985)}
+.cinematic-entry.entry-ready.entry-shown .photo-layer{opacity:1;transform:none}
+.final-stair.cinematic-entry.entry-ready.entry-shown .photo-layer,.solutions-grid .cinematic-entry.entry-ready.entry-shown .photo-layer{transform:none}
+.architecture-image.camera-ready img{animation:architecture-camera 20s ease-in-out infinite alternate;animation-play-state:paused}
+.architecture-image.camera-ready.camera-active img{animation-play-state:running}
+@keyframes hero-camera{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(0,0,0) scale(1.025)}}
+@keyframes architecture-camera{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(0,0,0) scale(1.012)}}
+@media(hover:hover) and (pointer:fine){.technology-item{transition:transform 500ms ease}.technology-item.entry-shown:hover{transform:translateY(-3px)}}
 @media(max-width:700px){
- .hero-photo.living-ready{padding:10px}
- .hero-photo.living-ready img{animation-name:rocca-mobile-camera}
- .architecture-image.living-ready img{transform:translateY(var(--living-y,0px)) scale(1.045)}
- .final-stair.living-ready{transform:translateY(8px) scale(.97);filter:blur(4px);transition-duration:800ms}
- .final-stair.living-visible{transform:translateY(0) scale(1);filter:blur(0)}
- .solutions-grid .media.living-ready{transition-duration:850ms}
+ .hero-photo{padding:10px;aspect-ratio:1100/1430}
+ .hero-photo img{animation-name:hero-mobile-camera}
+ .section-entry.entry-ready{transition-duration:700ms;transform:translateY(18px)}
+ .section-entry.entry-shown{transform:none}
+ .cinematic-entry.entry-ready .photo-layer{transition-duration:1000ms}
+ .final-stair.cinematic-entry.entry-ready .photo-layer{transition-duration:900ms}
+ .architecture-image.camera-ready img{animation:none}
+ .hero-entry .hero-copy>h1,.hero-entry .hero-copy>.intro,.hero-entry .hero-copy>.actions,.hero-entry .hero-copy>.geo{transition-duration:750ms}
 }
-@keyframes rocca-mobile-camera{from{transform:scale(1)}to{transform:scale(1.012)}}
+@keyframes hero-mobile-camera{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(0,0,0) scale(1.008)}}
 @media(prefers-reduced-motion:reduce){
- .hero-photo.living-ready img,.final-stair.living-ready img{animation:none;transform:none;translate:none;transition:none}
- .architecture-image.living-ready img,.solutions-grid .media.living-ready img{transform:none;translate:none;transition:none}
- .final-stair.living-ready,.solutions-grid .media.living-ready{opacity:1;transform:none;filter:none;clip-path:none;transition:none}
+ .hero-photo img,.architecture-image.camera-ready img{animation:none;transform:none}
+ .section-entry.entry-ready,.section-entry.entry-shown,.cinematic-entry.entry-ready .photo-layer,.hero-entry .hero-copy>h1,.hero-entry .hero-copy>.intro,.hero-entry .hero-copy>.actions,.hero-entry .hero-copy>.geo,.hero-entry .hero-photo{opacity:1;transform:none;transition:none}
+ .technology-item.entry-shown:hover{transform:none}
 }

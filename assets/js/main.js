@@ -9,15 +9,13 @@ const tabs=[...document.querySelectorAll('[data-tab]')];
 function selectTab(key,focus=false){tabs.forEach(tab=>{const active=tab.dataset.tab===key;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;document.querySelector('#panel-'+tab.dataset.tab).hidden=!active;if(active&&focus)tab.focus();});}
 tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectTab(tab.dataset.tab));tab.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const j=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;selectTab(tabs[j].dataset.tab,true);}});});
 document.querySelectorAll('[data-process]').forEach(a=>a.addEventListener('click',()=>selectTab(a.dataset.process)));
-// Motion is recalculated from each element's viewport position, including reverse scrolling.
-const photoReveal=[...document.querySelectorAll('.portfolio-page .real-photo')];
-const livingPhotos=[...document.querySelectorAll('.hero-photo,.architecture-image,.final-stair,.solutions-grid .media')];
-const motion=[...document.querySelectorAll('[data-motion]')].filter(el=>!photoReveal.includes(el)&&!livingPhotos.includes(el));
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+const photoReveal=[...document.querySelectorAll('.portfolio-page .real-photo')];
 let queued=false;
-function updateMotion(){queued=false;updateSticky();updateLivingPhotos();const vh=innerHeight;motion.forEach(el=>{if(reduced.matches){el.style.removeProperty('transform');el.style.removeProperty('opacity');if(el.hasAttribute('data-production-photo'))el.querySelector('img').style.removeProperty('transform');return;}const top=el.getBoundingClientRect().top;const progress=Math.max(0,Math.min(1,(vh*.98-top)/(vh*.68)));const eased=progress*progress*(3-2*progress);if(el.dataset.motion==='grow'){el.style.transform=`scale(${.95+.05*eased})`;el.style.opacity=String(.6+.4*eased);}else{const distance=innerWidth<701?12:36;const direction=el.dataset.motion==='right'?1:-1;el.style.transform=el.dataset.motion==='up'?`translateY(${(1-eased)*(innerWidth<701?8:20)}px)`:`translateX(${(1-eased)*distance*direction}px)`;el.style.opacity=String(.28+.72*eased);if(el.hasAttribute('data-production-photo'))el.querySelector('img').style.transform=`translateY(${(1-eased)*(innerWidth<701?3:6)}px) scale(1.025)`;}});}
-function schedule(){if(!queued){queued=true;requestAnimationFrame(updateMotion);}}
-addEventListener('scroll',schedule,{passive:true});addEventListener('resize',()=>{if(innerWidth>1150)closeMenu();schedule();});reduced.addEventListener('change',schedule);schedule();
+function schedule(){if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;updateSticky();});}}
+addEventListener('scroll',schedule,{passive:true});
+addEventListener('resize',()=>{if(innerWidth>1150)closeMenu();schedule();});
+schedule();
 
 const sticky=document.querySelector('#mobile-cta');
 function updateSticky(){if(!sticky||!document.querySelector('.hero')||!document.querySelector('#contact'))return;const hero=document.querySelector('.hero').getBoundingClientRect();const contact=document.querySelector('#contact').getBoundingClientRect();sticky.hidden=innerWidth>700||hero.bottom>72||contact.top<innerHeight*.8||navigation.classList.contains('open');}
@@ -31,7 +29,7 @@ form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())
 
 }
 
-// Photo reveals run only on viewport entry; the existing heading motion stays scroll-driven.
+// Internal photographic chapters keep their separate viewport reveal.
 if(photoReveal.length && 'IntersectionObserver' in window){
  const revealTimers=new WeakMap();
  let revealObserver;
@@ -70,50 +68,43 @@ if(photoReveal.length && 'IntersectionObserver' in window){
  configurePhotoReveal();
 }
 
-// Homepage: move only visible frames, with a single scroll frame shared by the page.
-const livingActive=new Set();
-const livingPointer=matchMedia('(hover: hover) and (pointer: fine)');
-function updateLivingPhotos(){
- if(reduced.matches)return;
- livingActive.forEach(el=>{
-  if(!el.matches('.hero-photo,.architecture-image'))return;
-  const rect=el.getBoundingClientRect();
-  const progress=Math.max(0,Math.min(1,(innerHeight-rect.top)/(innerHeight+rect.height)));
-  const amount=el.matches('.hero-photo')?(innerWidth<=700?2:4):(innerWidth<=700?10:30);
-  const y=(progress-.5)*amount*(el.matches('.hero-photo')?-1:1);
-  el.style.setProperty('--living-y',`${y.toFixed(2)}px`);
- });
-}
-if(livingPhotos.length && 'IntersectionObserver' in window){
- const observer=new IntersectionObserver(entries=>{
-  entries.forEach(({target:el,isIntersecting,boundingClientRect:rect})=>{
-   if(reduced.matches)return;
-   if(isIntersecting){livingActive.add(el);el.classList.add('living-visible');}
-   else{livingActive.delete(el);if(rect.top>innerHeight*.5)el.classList.remove('living-visible');}
-   el.classList.toggle('living-active',isIntersecting);
-  });schedule();
- },{threshold:.04});
- function configureLiving(){
-  observer.disconnect();livingActive.clear();
-  livingPhotos.forEach(el=>{
-   el.classList.remove('living-ready','living-active','living-visible');
-   ['--living-y','--cursor-x','--cursor-y'].forEach(v=>el.style.removeProperty(v));
-   if(!reduced.matches){el.classList.add('living-ready');observer.observe(el);}
-  });schedule();
+// One-time reveal: IntersectionObserver changes classes; scroll never writes image styles.
+const homepage=!!document.querySelector('.hero');
+const entryTargets=[...document.querySelectorAll('[data-motion],.technology-item')].filter(el=>!photoReveal.includes(el));
+const seenEntries=new WeakSet();
+let entryObserver;
+entryTargets.forEach(el=>{
+ if(homepage&&el.matches('.architecture-image,.final-stair,.solutions-grid .media'))el.classList.add('cinematic-entry');
+ else el.classList.add('section-entry');
+ if(el.matches('.technology-item')){
+  const siblings=[...el.parentElement.children];el.style.setProperty('--entry-delay',`${siblings.indexOf(el)%4*80}ms`);
  }
- reduced.addEventListener('change',configureLiving);
- livingPhotos.forEach(el=>{
-  let pointerFrame=0;
-  el.addEventListener('pointermove',event=>{
-   if(reduced.matches||!livingPointer.matches||!livingActive.has(el)||pointerFrame)return;
-   const x=event.clientX,y=event.clientY;
-   pointerFrame=requestAnimationFrame(()=>{
-    pointerFrame=0;const r=el.getBoundingClientRect();
-    el.style.setProperty('--cursor-x',`${((x-r.left)/r.width-.5)*8}px`);
-    el.style.setProperty('--cursor-y',`${((y-r.top)/r.height-.5)*8}px`);
-   });
-  },{passive:true});
-  el.addEventListener('pointerleave',()=>{cancelAnimationFrame(pointerFrame);pointerFrame=0;el.style.setProperty('--cursor-x','0px');el.style.setProperty('--cursor-y','0px');});
+ if(el.matches('.solutions-grid .media'))el.style.setProperty('--entry-delay','100ms');
+});
+function configureEntries(){
+ if(entryObserver)entryObserver.disconnect();
+ entryTargets.forEach(el=>{
+  if(reduced.matches){seenEntries.add(el);el.classList.remove('entry-ready');el.classList.add('entry-shown');}
+  else{el.classList.add('entry-ready');el.classList.toggle('entry-shown',seenEntries.has(el));}
  });
- configureLiving();
+ if(reduced.matches||!('IntersectionObserver' in window)){
+  entryTargets.forEach(el=>el.classList.add('entry-shown'));return;
+ }
+ entryObserver=new IntersectionObserver(entries=>entries.forEach(({target:el,isIntersecting})=>{
+  if(!isIntersecting)return;
+  seenEntries.add(el);el.classList.add('entry-shown');entryObserver.unobserve(el);
+  if(el.matches('.architecture-image'))setTimeout(()=>el.classList.add('camera-ready'),1400);
+ }),{threshold:.18});
+ entryTargets.filter(el=>!seenEntries.has(el)).forEach(el=>entryObserver.observe(el));
+}
+reduced.addEventListener('change',configureEntries);configureEntries();
+if(homepage){
+ const hero=document.querySelector('.hero');
+ const image=hero.querySelector('img');
+ if(!reduced.matches)hero.classList.add('hero-entry');
+ image.decode().catch(()=>{}).then(()=>requestAnimationFrame(()=>requestAnimationFrame(()=>hero.classList.add('hero-loaded'))));
+ reduced.addEventListener('change',()=>{if(reduced.matches)hero.classList.remove('hero-entry');});
+ // Visibility affects only play state; time and scale are handled entirely by CSS.
+ const cameraObserver='IntersectionObserver' in window?new IntersectionObserver(entries=>entries.forEach(({target,isIntersecting})=>target.classList.toggle('camera-active',isIntersecting)),{threshold:0}):null;
+ document.querySelectorAll('.hero-photo,.architecture-image').forEach(el=>cameraObserver?.observe(el));
 }
