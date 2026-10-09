@@ -60,3 +60,17 @@ p{max-width:680px}button,input,textarea{font-family:inherit}nav{font-size:12px;g
 .hero .hero-marker{font-size:10px;max-width:none;line-height:1.8;margin-bottom:0}
 .hero .hero-helper{font-size:12px;max-width:430px;line-height:1.7;margin-bottom:0}
 @media(max-width:700px){.hero .hero-marker{font-size:8px;max-width:none;line-height:1.8}.hero .hero-helper{font-size:11px;max-width:300px;line-height:1.7}}
+
+/* Large, legible lower-page visuals with their full original composition. */
+.engineering-compact{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:clamp(36px,4vw,76px);align-items:center}
+.engineering-compact figure{width:100%;max-width:none;height:auto!important;aspect-ratio:1672/941!important;order:0}
+.engineering-compact figure img{object-fit:contain;object-position:center}
+.engineering-compact>div{min-width:0}
+.quiet-finale{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,4vw,76px);align-items:center}
+.final-stair{width:100%;max-width:none;height:auto;aspect-ratio:800/993;justify-self:stretch}
+.final-stair img{object-fit:contain;object-position:center}
+@media(max-width:700px){
+ .engineering-compact,.quiet-finale{grid-template-columns:minmax(0,1fr);gap:32px}
+ .engineering-compact figure{width:100%;max-width:none;order:2}
+ .final-stair{width:100%;max-width:none;height:auto;aspect-ratio:800/993;justify-self:stretch}
+}
