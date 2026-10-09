@@ -20,18 +20,17 @@ schedule();
 const sticky=document.querySelector('#mobile-cta');
 function updateSticky(){if(!sticky||!document.querySelector('.hero')||!document.querySelector('#contact'))return;const hero=document.querySelector('.hero').getBoundingClientRect();const contact=document.querySelector('#contact').getBoundingClientRect();sticky.hidden=innerWidth>700||hero.bottom>72||contact.top<innerHeight*.8||navigation.classList.contains('open');}
 menu.addEventListener('click',updateSticky);
-const form=document.querySelector('#project-form');const files=document.querySelector('#project-files');const draft=document.querySelector('#draft-link');
-if(form&&files&&draft){
-document.querySelectorAll('[data-inquiry]').forEach(link=>link.addEventListener('click',()=>{const kind=link.dataset.inquiry;if(!form.elements.task.value&&kind!=='project'){form.elements.task.value=kind==='material'?'Нужен подбор материала. ':kind==='professional'?'Оценка профессионального проекта. ':kind+': ';}draft.hidden=true;}));
-files.addEventListener('change',()=>{const selected=[...files.files];const invalid=selected.some(f=>! /\.(pdf|dwg|dxf|jpe?g|png)$/i.test(f.name)||f.size>20*1024*1024);files.setCustomValidity(invalid?'Допустимы PDF, DWG, DXF, JPG и PNG до 20 МБ на файл.':'');document.querySelector('#file-status').textContent=invalid?'Проверьте формат и размер файлов.':selected.map(f=>f.name).join(' · ');});
-form.addEventListener('input',()=>{draft.hidden=true;document.querySelector('#form-status').textContent='';});
-form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;const body=['Имя: '+form.elements.name.value,'Контакт: '+form.elements.contact.value,'Задача: '+form.elements.task.value,'Файлы для приложения вручную: '+([...files.files].map(f=>f.name).join(', ')||'не выбраны')].join('\n\n');draft.href='mailto:hello@roccastone.ru?subject='+encodeURIComponent('ROCCA — расчёт проекта')+'&body='+encodeURIComponent(body);draft.hidden=false;document.querySelector('#form-status').textContent='Черновик подготовлен. Откройте письмо и приложите файлы вручную. Заявка ещё не отправлена.';draft.focus();});
-
+const form=document.querySelector('#project-form');const draft=document.querySelector('#draft-link');
+if(form&&draft){
+ document.querySelectorAll('[data-inquiry]').forEach(link=>link.addEventListener('click',()=>{const kind=link.dataset.inquiry;if(!form.elements.task.value&&kind!=='project')form.elements.task.value=kind==='material'?'Нужен подбор материала. ':kind==='professional'?'Оценка профессионального проекта. ':kind+': ';draft.hidden=true;}));
+ form.addEventListener('input',()=>{draft.hidden=true;document.querySelector('#form-status').textContent='';});
+ form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;const body=['Имя: '+form.elements.name.value,'Контакт: '+form.elements.contact.value,'Задача: '+form.elements.task.value].join('\n\n');draft.href='mailto:hello@roccastone.ru?subject='+encodeURIComponent('ROCCA — расчёт проекта')+'&body='+encodeURIComponent(body);draft.hidden=false;document.querySelector('#form-status').textContent='Письмо подготовлено. Откройте его, приложите материалы и отправьте.';draft.focus();});
 }
 
 // Internal photographic chapters keep their separate viewport reveal.
 if(photoReveal.length && 'IntersectionObserver' in window){
  const revealTimers=new WeakMap();
+ const revealedPhotos=new WeakSet();
  let revealObserver;
  photoReveal.forEach((el,i)=>{
   const figure=el.closest('.real-card');
@@ -46,23 +45,21 @@ if(photoReveal.length && 'IntersectionObserver' in window){
    clearTimeout(revealTimers.get(el));
    el.classList.remove('photo-pending','photo-entering','photo-visible');
   });
-  if(reduced.matches)return;
+  if(reduced.matches){photoReveal.forEach(el=>revealedPhotos.add(el));return;}
   revealObserver=new IntersectionObserver(entries=>{
    entries.forEach(entry=>{
     const el=entry.target;
     if(entry.isIntersecting){
      if(el.classList.contains('photo-visible'))return;
+     revealedPhotos.add(el);
+     revealObserver.unobserve(el);
      el.classList.add('photo-entering','photo-visible');
      clearTimeout(revealTimers.get(el));
      revealTimers.set(el,setTimeout(()=>el.classList.remove('photo-entering'),1550));
-    }else if(entry.boundingClientRect.top>innerHeight*.5){
-     // Re-arm only below the viewport, so reverse scrolling can reveal the frame again.
-     clearTimeout(revealTimers.get(el));
-     el.classList.remove('photo-visible','photo-entering');
     }
    });
   },{threshold:.06,rootMargin:'0px 0px -24px 0px'});
-  photoReveal.forEach(el=>{el.classList.add('photo-pending');revealObserver.observe(el);});
+  photoReveal.forEach(el=>{el.classList.add('photo-pending');if(revealedPhotos.has(el))el.classList.add('photo-visible');else revealObserver.observe(el);});
  }
  reduced.addEventListener('change',configurePhotoReveal);
  configurePhotoReveal();
