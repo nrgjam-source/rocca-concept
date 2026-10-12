@@ -1,0 +1,62 @@
+/* Shared Dark + Light readability and hierarchy. Motion is intentionally unchanged. */
+:root{--muted:#b3b7ae}
+h1,h2{letter-spacing:-.022em;line-height:1.12;text-wrap:balance;overflow-wrap:normal}
+h3{letter-spacing:-.01em;line-height:1.3;text-wrap:balance}
+h2 .muted{color:var(--ink)}
+.hero h1{font-size:clamp(42px,4.1vw,68px);letter-spacing:-.022em;line-height:1.12;max-width:720px;text-wrap:balance}
+.hero .intro{line-height:1.6;max-width:500px}
+.hero .hero-helper{font-size:11px;line-height:1.65;max-width:390px}
+.hero .geo{font-size:10px;line-height:1.7}
+.hero-bottom{font-size:10px;letter-spacing:.015em}
+.section-label{font-size:10px;letter-spacing:.1em}
+.visual-note{font-size:10px;letter-spacing:.015em}
+.architecture-heading h2{line-height:1.13;letter-spacing:-.022em}
+.architecture-heading p{max-width:510px;line-height:1.6}
+.materials h2{line-height:1.14;letter-spacing:-.02em}
+.b2b-callout h3{line-height:1.3;letter-spacing:-.01em;max-width:590px}
+.b2b-callout p{max-width:600px;line-height:1.65}
+.process-steps h3{line-height:1.3;letter-spacing:-.01em;overflow-wrap:normal}
+.technology-item h3{line-height:1.32;letter-spacing:-.01em}
+.technology-item .case-number,.process-steps li:before{color:var(--muted);font-size:10px}
+.engineering-compact{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}
+.engineering-compact h2{line-height:1.2;letter-spacing:-.018em;max-width:580px}
+.engineering-compact p{line-height:1.65;max-width:520px}
+.engineering-compact figure{width:100%;max-width:none;height:auto!important;aspect-ratio:1672/941!important}
+.engineering-compact figure img{object-fit:contain;object-position:center}
+.quiet-finale{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.final-cta h2{line-height:1.14;letter-spacing:-.022em}
+.final-cta p{max-width:490px;line-height:1.6}
+.final-stair{width:100%;max-width:none;height:auto;aspect-ratio:800/993}
+.final-stair img{object-fit:contain;object-position:center}
+.contact-layout h2{line-height:1.14;letter-spacing:-.02em}
+.page-heading h1{line-height:1.12;letter-spacing:-.022em}
+.archive-case .case-heading h2{line-height:1.17;letter-spacing:-.018em}
+.journal-copy h1{line-height:1.06;letter-spacing:-.022em}
+.real-card figcaption h3{letter-spacing:0}
+@media(min-width:701px) and (max-width:1150px){
+ .hero h1{font-size:clamp(33px,4.1vw,47px)}
+ .engineering-compact h2{font-size:clamp(24px,2.7vw,31px)}
+}
+@media(max-width:700px){
+ h2,.architecture-heading h2{font-size:clamp(31px,8.3vw,39px);line-height:1.16;letter-spacing:-.018em}
+ .hero h1{font-size:clamp(31px,8.5vw,37px);line-height:1.15;letter-spacing:-.018em;margin-block:24px 22px}
+ .hero .intro{font-size:15px;line-height:1.6}
+ .hero .hero-helper{font-size:11px;max-width:330px}
+ .hero .geo{font-size:10px;margin-top:18px}
+ .hero .hero-marker{font-size:9px;letter-spacing:.065em}
+ .section-label{font-size:9px;letter-spacing:.09em}
+ .visual-note{font-size:10px}
+ .materials h2{font-size:31px;line-height:1.18;letter-spacing:-.018em}
+ .process-steps h3,.technology-item h3{font-size:16px;line-height:1.32;letter-spacing:-.005em}
+ .b2b-callout h3{font-size:21px;line-height:1.3}
+ .engineering-compact,.quiet-finale{grid-template-columns:minmax(0,1fr)}
+ .engineering-compact figure{order:2;width:100%;max-width:none}
+ .engineering-compact h2{font-size:25px;line-height:1.2;letter-spacing:-.015em}
+ .final-cta h2{font-size:clamp(33px,8.5vw,40px);line-height:1.16;letter-spacing:-.018em}
+ .final-stair{width:100%;max-width:none;height:auto}
+ .contact-layout h2{font-size:31px;line-height:1.18;letter-spacing:-.018em}
+ .page-heading h1{font-size:clamp(29px,7.7vw,36px);line-height:1.17;letter-spacing:-.018em}
+ .archive-case .case-heading h2{font-size:28px;line-height:1.2;letter-spacing:-.015em}
+ .journal-copy h1{line-height:1.09;letter-spacing:-.018em}
+ .page-cta h2{font-size:33px;line-height:1.17;letter-spacing:-.018em}
+}
